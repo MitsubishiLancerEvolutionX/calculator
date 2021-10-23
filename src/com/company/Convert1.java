@@ -10,8 +10,22 @@ public class Convert1 {
 
     String resultSS = new String();
 
-    private int[] num1 = new int[] {1000,500,100,50,10,5,1};
-    private String[] num2 = new String[] {"M","D","C","L","X","V","I"};
+    public enum ArabicRoman1 {
+        M(1000),
+        D(500),
+        C(100),
+        L(50),
+        X(10),
+        V(5),
+        I(1);
+
+        int value;
+        ArabicRoman1 (int value) {
+            this.value = value;
+        }
+    }
+
+    ArabicRoman1[] en = ArabicRoman1.values();
 
     public String convert1 () {
 
@@ -20,12 +34,13 @@ public class Convert1 {
         int k = 0;
 
         for (int i = 0; i < roman.length; i++) {
-            for (int j = 0; j < num2.length; j++) {
-                if (roman[i].equals(num2[j])) {
-                    res[i] = num1[j];
+            for (ArabicRoman1 obj : en) {
+                if (roman[i].equals(obj.name())) {
+                    res[i] = obj.value;
                 }
             }
         }
+
 
         for (int i = 0; i < res.length - 1; i++) {
             if (res[i+1] > res[i]) {
@@ -40,6 +55,7 @@ public class Convert1 {
         int sum = k - (2 * n);
 
         resultSS = Integer.toString(sum);
+
         return resultSS;
     }
 }

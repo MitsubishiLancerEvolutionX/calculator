@@ -2,19 +2,36 @@ package com.company;
 
 public class Convert {
 
-
     StringBuffer resultS = new StringBuffer();
 
-    private int[] num1 = new int[] {1000,900,500,400,100,90,50,40,10,9,5,4,1};
-    private String[] num2 = new String[] {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    public enum ArabicRoman {
+        M(1000),
+        CM(900),
+        D(500),
+        CD(400),
+        C(100),
+        XC(90),
+        L(50),
+        XL(40),
+        X(10),
+        IX(9),
+        V(5),
+        IV(4),
+        I(1);
+
+        int value;
+        ArabicRoman (int value) {
+            this.value = value;
+        }
+
+    }
+    ArabicRoman[] en = ArabicRoman.values();
 
     public StringBuffer convert (int result) {
-
-        for (int i = 0; i < num1.length; i++) {
-
-            while (result >= num1[i]) {
-                result -= num1[i];
-                resultS.append(num2[i]);
+        for (int i = 0; i < en.length; i++) {
+            while (result >= en[i].value) {
+                result -= en[i].value;
+                resultS.append(en[i]);
             }
         }
 
